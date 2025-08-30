@@ -1,59 +1,59 @@
 
-<div class="el-affix" style="height: 80px; width: 800px;">
+<div data-v-8133d3e7="" class="el-affix" style="height: 80px; width: 800px;">
     <div class="el-affix--fixed" style="height: 80px; width: 800px; top: 0px; z-index: 100;">
         <header class="header">
             <div class="headerWrapper">
                 <!-- Logo -->
-                <div class="logo">
-                    <div class="bg">
-                        <img src="https://apis.meishi.bet/uploads/images/logo/pclogo.png">
+                <div data-v-457ed486="" class="logo">
+                    <div data-v-457ed486="" class="bg">
+                        <img data-v-457ed486="" src="https://apis.meishi.bet/uploads/images/logo/pclogo.png">
                     </div>
                 </div>
-                
+
                 <!-- Navigation Menu -->
-                <ul role="menubar" class="el-menu el-menu--horizontal menus">
-                    <li class="el-sub-menu">
+                <ul role="menubar" class="el-menu el-menu--horizontal menus" style="--el-menu-level: 0;">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
-                            <a href="<?= url('') ?>" class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'router-link-active' : '' ?>">首页</a>
+                            <a href="<?= url('') ?>" class="router-link-active router-link-exact-active">首页</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category.php?code=live') ?>">视讯</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category2.php?code=game') ?>">电子</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category2.php?code=fishing') ?>">捕鱼</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category.php?code=lottery') ?>">彩票</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category.php?code=sport') ?>">体育</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category2.php?code=poker') ?>">棋牌</a>
                         </div>
                     </li>
-                    <li class="el-sub-menu">
+                    <li class="el-sub-menu" role="menuitem">
                         <div class="el-sub-menu__title">
                             <a href="<?= url('category.php?code=esports') ?>">电竞</a>
                         </div>
                     </li>
                 </ul>
-                
+
                 <!-- Right side menu -->
                 <ul class="docAndDownload">
                     <li>
@@ -100,7 +100,7 @@
                         </div>
                     </li>
                 </ul>
-                
+
                 <!-- Login Bar -->
                 <div class="loginBar">
                     <?php if (is_logged_in()): ?>
@@ -121,16 +121,29 @@
                                     <input class="el-input__inner" type="password" name="password" placeholder="密码" required>
                                 </div>
                             </div>
-                            <button type="submit" class="el-button el-button--primary round">
+                            <button type="submit" class="el-button el-button--primary round" style="margin-left: 10px;">
                                 <span>登录</span>
                             </button>
-                            <button type="button" class="el-button round modal-trigger" data-target="#registerModal">
+                            <button type="button" class="el-button round modal-trigger" data-target="#registerModal" style="margin-left: 10px;">
                                 <span>注册</span>
                             </button>
                         </form>
                     <?php endif; ?>
                 </div>
+
+                <!-- Language selector -->
+                <div class="language">
+                    <div class="el-select round" style="width: 80px;">
+                        <div class="el-select__wrapper">
+                            <div class="el-select__selection">
+                                <div class="el-select__selected-item el-select__placeholder">
+                                    <span>zh-CN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
     </div>
-</div>
+</div></old_str>

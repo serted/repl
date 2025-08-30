@@ -19,11 +19,12 @@ ob_start();
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/index-mqTVirNo.css">
+    <link rel="stylesheet" href="assets/modal-styles.css">
 
     <!-- App initialization -->
-    <script src="assets/app-init.js"></script>
-    <script src="assets/i18n.js"></script>
-    <script src="assets/auth.js"></script>
+    <script src="js/app-init.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/auth.js"></script>
 </head>
 <body>
     <div id="app" data-v-app="">
@@ -336,17 +337,33 @@ ob_start();
                 </div>
                 <div class="modal-body">
                     <form id="registerForm">
-                        <div class="form-group">
-                            <input type="text" name="username" placeholder="用户名" required>
+                        <div class="el-form-item">
+                            <div class="el-input">
+                                <div class="el-input__wrapper">
+                                    <input class="el-input__inner" type="text" name="username" placeholder="用户名" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password" placeholder="密码" required>
+                        <div class="el-form-item">
+                            <div class="el-input">
+                                <div class="el-input__wrapper">
+                                    <input class="el-input__inner" type="password" name="password" placeholder="密码" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password_confirm" placeholder="确认密码" required>
+                        <div class="el-form-item">
+                            <div class="el-input">
+                                <div class="el-input__wrapper">
+                                    <input class="el-input__inner" type="password" name="password_confirm" placeholder="确认密码" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="nickname" placeholder="昵称">
+                        <div class="el-form-item">
+                            <div class="el-input">
+                                <div class="el-input__wrapper">
+                                    <input class="el-input__inner" type="text" name="nickname" placeholder="昵称">
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="el-button el-button--primary">注册</button>
                     </form>
@@ -354,6 +371,63 @@ ob_start();
             </div>
         </div>
     </div>
+
+    <!-- Additional CSS for modals -->
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .modal-dialog {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            max-width: 90%;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h4 {
+            margin: 0;
+            color: #333;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .el-form-item {
+            margin-bottom: 15px;
+        }
+    </style>
 
 </body>
 </html>
