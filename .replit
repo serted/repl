@@ -3,6 +3,7 @@ run = "php run"
 
 [nix]
 channel = "stable-25_05"
+packages = ["postgresql"]
 
 [deployment]
 run = ["sh", "-c", "php run"]
