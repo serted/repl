@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . '/include/functions.php';
 echo "<!-- PHP IS RUNNING -->"; 
-require_once __DIR__ . '/include/functions.php'; ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
     <base href="/dev/">
