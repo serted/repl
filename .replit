@@ -20,6 +20,19 @@ mode = "sequential"
 task = "shell.exec"
 args = "php -S 0.0.0.0:5000 -t ."
 
+[[workflows.workflow]]
+name = "Download Assets and Run"
+author = 47060306
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php tools/download-assets.php"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:5000 -t ."
+
 [[ports]]
 localPort = 5000
 externalPort = 80
