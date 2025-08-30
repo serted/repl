@@ -16,16 +16,27 @@ if (strpos($_SERVER['SCRIPT_NAME'], '/api/') === 0) {
   exit;
 }*/
 
-foreach (['pdo_mysql'=>'PDO MySQL','curl'=>'cURL'] as $ext=>$name){
-  if($ext==='pdo_mysql' && !extension_loaded('pdo_mysql')) fail("PHP extension missing: $name", 500);
-  if($ext!=='pdo_mysql' && !extension_loaded($ext)) fail("PHP extension missing: $name", 500);
+foreach (['pdo_pgsql'=>'PDO PostgreSQL','curl'=>'cURL'] as $ext=>$name){
+  if($ext==='pdo_pgsql' && !extension_loaded('pdo_pgsql')) fail("PHP extension missing: $name", 500);
+  if($ext!=='pdo_pgsql' && !extension_loaded($ext)) fail("PHP extension missing: $name", 500);
 }
 
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_PORT', getenv('DB_PORT') ?: '3306');
-define('DB_NAME', getenv('DB_NAME') ?: 'pc_dfbiu_clone');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: 'НовыйПароль');
+// Use PostgreSQL environment variables from Replit
+$databaseUrl = getenv('DATABASE_URL');
+if ($databaseUrl) {
+  $parsedUrl = parse_url($databaseUrl);
+  define('DB_HOST', $parsedUrl['host']);
+  define('DB_PORT', $parsedUrl['port'] ?? 5432);
+  define('DB_NAME', ltrim($parsedUrl['path'], '/'));
+  define('DB_USER', $parsedUrl['user']);
+  define('DB_PASS', $parsedUrl['pass']);
+} else {
+  define('DB_HOST', getenv('PGHOST') ?: '127.0.0.1');
+  define('DB_PORT', getenv('PGPORT') ?: '5432');
+  define('DB_NAME', getenv('PGDATABASE') ?: 'pc_dfbiu_clone');
+  define('DB_USER', getenv('PGUSER') ?: 'postgres');
+  define('DB_PASS', getenv('PGPASSWORD') ?: '');
+}
 
 
 // Database connection and initialization is handled in bootstrap.php

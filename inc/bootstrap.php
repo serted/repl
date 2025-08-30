@@ -1,7 +1,5 @@
 <?php
 declare(strict_types=1);
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
 
 // inc/bootstrap.php — single entry point
 if (session_status() === PHP_SESSION_NONE) {
@@ -11,6 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
   ]);
   session_start();
 }
+
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
 
 if (!defined('BASE_PREFIX')) {
   define('BASE_PREFIX', getenv('BASE_PREFIX') ?: '/dev/');
@@ -25,11 +26,10 @@ header_remove('X-Powered-By');
 
 require_once __DIR__ . '/../api/config.php'; // must define DB_* constants
 
-$dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', DB_HOST, DB_PORT, DB_NAME);
+$dsn = sprintf('pgsql:host=%s;port=%s;dbname=%s', DB_HOST, DB_PORT, DB_NAME);
 $pdo = new PDO($dsn, DB_USER, DB_PASS, [
   PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-  PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC,
-  PDO::MYSQL_ATTR_INIT_COMMAND=>'SET sql_mode=STRICT_ALL_TABLES'
+  PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC
 ]);
 
 function json_response($data, int $code=200): void {
