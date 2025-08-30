@@ -1,0 +1,23 @@
+
+#!/usr/bin/env php
+<?php
+// Find available port
+$ports = [5000, 8000, 3000, 4000, 9000];
+$port = null;
+
+foreach ($ports as $testPort) {
+    $socket = @fsockopen('127.0.0.1', $testPort, $errno, $errstr, 1);
+    if (!$socket) {
+        $port = $testPort;
+        break;
+    } else {
+        fclose($socket);
+    }
+}
+
+if (!$port) {
+    $port = 5000; // fallback
+}
+
+echo "Starting PHP server on port $port...\n";
+exec("php -S 0.0.0.0:$port -t .", $output, $returnCode);

@@ -18,7 +18,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "php -S 0.0.0.0:5000 -t ."
+args = "php run"
 
 [[workflows.workflow]]
 name = "Download Assets and Run"

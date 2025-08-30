@@ -1,67 +1,118 @@
 
-/**
- * Application initialization - ensures proper loading order
- */
+// App initialization without domain restrictions
 (function() {
     'use strict';
     
-    // Wait for DOM and all scripts to load
-    let scriptsLoaded = 0;
-    const totalScripts = 3; // i18n, auth, main app
-    
-    function checkAllLoaded() {
-        scriptsLoaded++;
-        if (scriptsLoaded >= totalScripts && document.readyState === 'complete') {
-            initializeApp();
-        }
+    // Ensure jQuery is available
+    if (typeof $ === 'undefined') {
+        console.warn('jQuery not loaded');
+        return;
     }
     
-    function initializeApp() {
-        try {
-            // Initialize global state
-            if (!window.GlobalState) {
-                window.GlobalState = {
-                    user: null,
-                    token: localStorage.getItem('token'),
-                    balance: 0,
-                    isLoggedIn: false
-                };
-            }
-            
-            // Initialize authentication
-            if (window.Auth && window.Auth.isLoggedIn()) {
-                window.Auth.getCurrentUser();
-            }
-            
-            console.log('App initialized successfully');
-        } catch (error) {
-            console.error('App initialization error:', error);
-        }
-    }
-    
-    // Load required scripts
-    const scripts = [
-        '/js/i18n.js',
-        '/js/auth.js',
-        '/assets/index-C3VaJCuS.js'
-    ];
-    
-    scripts.forEach(src => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = checkAllLoaded;
-        script.onerror = function() {
-            console.error('Failed to load script:', src);
-            checkAllLoaded(); // Continue even if script fails
-        };
-        document.head.appendChild(script);
+    // Initialize Vue app when DOM is ready
+    $(document).ready(function() {
+        // Remove any domain checks that might prevent loading
+        // Initialize basic functionality
+        initializeApp();
+        initializeModals();
+        initializeAuth();
+        initializeUI();
     });
     
-    // Also check when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkAllLoaded);
-    } else {
-        checkAllLoaded();
+    function initializeApp() {
+        console.log('App initializing...');
+        // Basic app setup
+    }
+    
+    function initializeModals() {
+        // Modal functionality
+        $('.modal-trigger').on('click', function(e) {
+            e.preventDefault();
+            const target = $(this).data('target');
+            if (target) {
+                $(target).show();
+            }
+        });
+        
+        $('.modal-close, .modal-backdrop').on('click', function() {
+            $('.modal').hide();
+        });
+    }
+    
+    function initializeAuth() {
+        // Auth form handlers
+        $('#loginForm').on('submit', handleLogin);
+        $('#registerForm').on('submit', handleRegister);
+        $('.logout-btn').on('click', handleLogout);
+    }
+    
+    function initializeUI() {
+        // UI enhancements
+        $('.dropdown-toggle').on('click', function(e) {
+            e.preventDefault();
+            $(this).next('.dropdown-menu').toggle();
+        });
+        
+        // Close dropdowns when clicking outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.dropdown').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+    }
+    
+    function handleLogin(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        
+        fetch('/api/auth/login.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert(data.message || 'Login failed');
+            }
+        })
+        .catch(error => {
+            console.error('Login error:', error);
+            alert('Login failed');
+        });
+    }
+    
+    function handleRegister(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        
+        fetch('/api/auth/register.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Registration successful');
+                location.reload();
+            } else {
+                alert(data.message || 'Registration failed');
+            }
+        })
+        .catch(error => {
+            console.error('Register error:', error);
+            alert('Registration failed');
+        });
+    }
+    
+    function handleLogout() {
+        fetch('/api/auth/logout.php', {
+            method: 'POST'
+        })
+        .then(() => {
+            location.reload();
+        });
     }
     
 })();

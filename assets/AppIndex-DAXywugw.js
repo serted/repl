@@ -1,29 +1,28 @@
-
 /**
  * AppIndex Component - Fixed syntax errors
  */
 (function() {
     'use strict';
-    
+
     // Safe fallbacks for undefined functions
     window.Q = window.Q || function(obj) { return obj; };
     window.A = window.A || function() { return {}; };
     window.j = window.j || function() { return {}; };
     window.F = window.F || function() { return {}; };
     window.J = window.J || function() { return {}; };
-    
+
     // Component definition
     const AppIndexComponent = {
         name: 'AppIndex',
         setup() {
             const { ref, reactive, onMounted } = Vue;
-            
+
             const data = ref([]);
             const currentPage = ref(1);
             const pageSize = ref(10);
             const total = ref(0);
             const loading = ref(false);
-            
+
             const loadData = async () => {
                 loading.value = true;
                 try {
@@ -37,7 +36,7 @@
                         },
                         {
                             id: 2,
-                            title: 'Game 2', 
+                            title: 'Game 2',
                             img: '/assets/category-CMHPLGhY.png',
                             url: '#'
                         }
@@ -47,23 +46,23 @@
                     loading.value = false;
                 }
             };
-            
+
             const handleItemClick = (item) => {
                 console.log('Item clicked:', item);
                 if (item.url && item.url !== '#') {
                     window.open(item.url);
                 }
             };
-            
+
             const handlePageChange = (page) => {
                 currentPage.value = page;
                 loadData();
             };
-            
+
             onMounted(() => {
                 loadData();
             });
-            
+
             return {
                 data,
                 currentPage,
@@ -75,12 +74,12 @@
                 handlePageChange
             };
         },
-        
+
         template: `
             <div class="app-index">
                 <div class="game-list" v-if="data.length">
-                    <div class="imgItem" 
-                         v-for="(item, index) in data" 
+                    <div class="imgItem"
+                         v-for="(item, index) in data"
                          :key="index"
                          @click="handleItemClick(item)">
                         <div class="img-container">
@@ -98,10 +97,10 @@
             </div>
         `
     };
-    
+
     // Register component globally if Vue is available
     if (window.Vue && window.Vue.createApp) {
         window.AppIndexComponent = AppIndexComponent;
     }
-    
+
 })();
