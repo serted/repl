@@ -1,4 +1,3 @@
-
 <?php
 require_once 'inc/bootstrap.php';
 require_once 'include/functions.php';
@@ -14,17 +13,17 @@ ob_start();
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC游戏平台</title>
-    
-    <!-- Local jQuery -->
-    <script src="<?= asset('js/jquery.min.js') ?>"></script>
-    
+
+    <!-- jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Main CSS -->
-    <link rel="stylesheet" href="<?= asset('index-mqTVirNo.css') ?>">
-    
+    <link rel="stylesheet" href="assets/index-mqTVirNo.css">
+
     <!-- App initialization -->
-    <script src="<?= asset('js/app-init.js') ?>"></script>
-    <script src="<?= asset('js/i18n.js') ?>"></script>
-    <script src="<?= asset('js/auth.js') ?>"></script>
+    <script src="assets/app-init.js"></script>
+    <script src="assets/i18n.js"></script>
+    <script src="assets/auth.js"></script>
 </head>
 <body>
     <div id="app" data-v-app="">
@@ -41,7 +40,7 @@ ob_start();
                                         <img data-v-457ed486="" src="https://apis.meishi.bet/uploads/images/logo/pclogo.png">
                                     </div>
                                 </div>
-                                
+
                                 <!-- Navigation Menu -->
                                 <ul role="menubar" class="el-menu el-menu--horizontal menus" style="--el-menu-level: 0;">
                                     <li class="el-sub-menu" role="menuitem">
@@ -85,7 +84,7 @@ ob_start();
                                         </div>
                                     </li>
                                 </ul>
-                                
+
                                 <!-- Right side menu -->
                                 <ul class="docAndDownload">
                                     <li>
@@ -132,7 +131,7 @@ ob_start();
                                         </div>
                                     </li>
                                 </ul>
-                                
+
                                 <!-- Login Bar -->
                                 <div class="loginBar">
                                     <?php if (is_logged_in()): ?>
@@ -162,7 +161,7 @@ ob_start();
                                         </form>
                                     <?php endif; ?>
                                 </div>
-                                
+
                                 <!-- Language selector -->
                                 <div class="language">
                                     <div class="el-select round" style="width: 80px;">
@@ -179,7 +178,7 @@ ob_start();
                         </header>
                     </div>
                 </div>
-                
+
                 <!-- Main Content -->
                 <main data-v-8133d3e7="" class="main">
                     <!-- Banner -->
@@ -188,11 +187,11 @@ ob_start();
                             <div data-v-16f05b83="" class="banner_counter"></div>
                         </div>
                     </div>
-                    
+
                     <!-- Announcement -->
                     <div data-v-ddf41b57="" class="announcement">
                         <div data-v-ddf41b57="" class="icon">
-                            <img data-v-ddf41b57="" src="<?= asset('notice-BFxQjxhm.png') ?>">
+                            <img data-v-ddf41b57="" src="assets/notice-BFxQjxhm.png">
                         </div>
                         <div data-v-ddf41b57="" class="text">视讯</div>
                         <div data-v-ddf41b57="" class="text">电子</div>
@@ -205,7 +204,7 @@ ob_start();
                             <span>更多</span>
                         </button>
                     </div>
-                    
+
                     <!-- App Download Section -->
                     <div class="appDownload">
                         <div class="title">
@@ -227,7 +226,7 @@ ob_start();
                                 <div class="info">
                                     <div class="item">
                                         <div class="icon">
-                                            <img src="data:image/png;base64,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">
+                                            <img src="data:image/png;base64,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">
                                         </div>
                                         <div class="text">
                                             <p>扫码下载</p>
@@ -236,7 +235,7 @@ ob_start();
                                     </div>
                                     <div class="item">
                                         <div class="icon">
-                                            <img src="<?= asset('h5-DDnm2lPM.png') ?>">
+                                            <img src="assets/h5-DDnm2lPM.png">
                                         </div>
                                         <div class="text">
                                             <p>直接访问</p>
@@ -247,7 +246,7 @@ ob_start();
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- High Quality Service -->
                     <div data-v-74be09a3="" class="highQualityService">
                         <div data-v-74be09a3="" class="highQualityServiceTitle">
@@ -274,7 +273,7 @@ ob_start();
                             <!-- Additional service items... -->
                         </div>
                     </div>
-                    
+
                     <!-- Partners -->
                     <div data-v-9e6a3e20="" class="image">
                         <div data-v-9e6a3e20="" class="title">
@@ -287,25 +286,25 @@ ob_start();
                         </div>
                     </div>
                 </main>
-                
+
                 <!-- Footer -->
                 <footer data-v-07831aa4="" class="footer">
                     <ul class="logos sm">
-                        <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAABkCAMAAAAG5NqcAAAAIVBMVEVMaXGIj6eIkKiOmKyIj6eIj6eIj6eHjqZPjUtcAAAACnRSTlMAoVEQ8movytyIX3IbUAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA+xJREFUeJztmu2WwygIhlH8QO7/gveIYkyTNrab3THn+P6Ypp02eSSAiAFYWlpaWlpaWlpaWlpaWlr6D4TBflZAmFHoI1/LGQuTCZPjQcW54APxFzIwj8Kwyavh8ankzBHmEH7lLUUJplD6npw5wATCr91lmlD1v5AzzxCp8Td0/9fcAPgb+QxJJvyITt05ktyCkLZ5thzaVOVLVNt0cLNUP7Lbj1E/u5L9Ed1153AyDs+sl8cSxobZZWlYp0Nisppn0bX/mdHU+2OUMp+gO2Vv6PUnRImNIzo5csXEgetBGs5eP6PjEd2SC6foECQ2DuievVUb+xI+lgn/AD2Eyn5AR3GwA3o2OemZUh5EcHX0t6C7cfR25Vd0f2p1n93INgeJbJG+mKcbus0eKfKAphFGfDO6U3QITu63ohtJMCayjOgFHZ24d6NFciUmvkQ3LVGKyzV2fJeFztEru6JLgnGOjNC9oIvR84uaPbivCgxF9216Kr9Wdnljx9HB5hv16jBFe3QsN6gzO5iv6oseHTp0Zffv2N+hC/sIelLn2Lz9JnRlt2/Y36LnmBxAx/KrndnvQr9gf4+ez/kG3VSFzeid2W9Dr+zunL27CElk+y0jJ1cm/pccnWrUOucBqZt6Yv2icTeg4yX73xfs/hzdXLJPi050xT4vOl+xT4zOF+wzo/Nn9qnR+SP73Oj8iX1ydP7A3qEns5Wq1mxTWioFI1idRMs8iu2NrqW95GJrdFGK8r1/h67ssWf3h0JA15WyPG4LbqstD09E5NjlFytLpnxERNo0LhUDRl1j68FPRW9roZZz128VdjzWMO1SnqmhRxe7Isa/9gvaoq4VO4o8Rt7Q036psa3qhF1bqsIeDugmqtkpGkW3nMpq+gN6LR+1TkPKJhztZii6s3nQxwUeMwW0bSTOYt0C2aHbWgZ6tg09r5lN4z1Hr0VnKzGR2JrRpdK28NwMLU2fK+3QIZbimyIounQpOrP7M3R/aB3QeBf5lmaGgWJ2y7ahl97QZvYenWqGoV2Yisx47/4mdKBs9vynovvisJvZe/SaYTjnmz164jjcibkLPZOJ6Su6NuSMEp84TGtdNHTPEYe7SHehZ4uLwxf0avTO7P6InoNyh57Jxztgt7RLM4pnI0YUdFSjb2Y/C1OFrOi+zoC2dJz+lya1qfOoBKbrjb6Z/TTD1OZoQd86pWPsd2wNROH0JJ6bMmnsdoUNFZOWF7kl25TjKQ8j5f+FGBuvp4Ft5QdvyMBzt8HgwZuP+NwtX3juRjs8+PEGeO5DJfDgR3ngwQ9QwYMfW4MHPyz46Ec0l5aWlpaWlpaWlpaWlpaW4EL/AIDBesTtBZMkAAAAAElFTkSuQmCC"></li>
-                        <li><img src="<?= asset('15-DzRccdTg.png') ?>"></li>
-                        <li><img src="<?= asset('16-Dn_-QgpL.png') ?>"></li>
-                        <li><img src="<?= asset('17-CLffHcpW.png') ?>"></li>
+                        <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAABkCAMAAAAG5NqcAAAAIVBMVEVMaXGIj6eIkKiOmKyIj6eIj6eIj6eHjqZPjUtcAAAACnRSTlMAoVEQ8movytyIX3IbUAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA+xJREFUeJztmu2WwygIhlH8QO7/gveIYkyTNrab3THn+P6Ypp02eSSAiAFYWlpaWlpaWlpaWlpaWlr6D4TBflZAmFHoI1/LGQuTCZPjQcW54APxFzIwj8Kwyavh8ankzBHmEH7lLUUJplD6npw5wATCr91lmlD1v5AzzxCp8Td0/9fcAPgb+QxJJvyITt05ktyCkLZ5thzaVOVLVNt0cLNUP7Lbj1E/u5L9Ed1153AyDs+sl8cSxobZZWlYp0Nisppn0bX/mdHU+2OUMp+gO2Vv6PUnRImNIzo5csXEgetBGs5eP6PjEd2SC6foECQ2DuievVUb+xI+lgn/AD2Eyn5AR3GwA3o2OemZUh5EcHX0t6C7cfR25Vd0f2p1n93INgeJbJG+mKcbus0eKfKAphFGfDO6U3QITu63ohtJMCayjOgFHZ24d6NFciUmvkQ3LVGKyzV2fJeFztEru6JLgnGOjNC9oIvR84uaPbivCgxF9216Kr9Wdnljx9HB5hv16jBFe3QsN6gzO5iv6oseHTp0Zffv2N+hC/sIelLn2Lz9JnRlt2/Y36LnmBxAx/KrndnvQr9gf4+ez/kG3VSFzeid2W9Dr+zunL27CElk+y0jJ1cm/pccnWrUOucBqZt6Yv2icTeg4yX73xfs/hzdXLJPi050xT4vOl+xT4zOF+wzo/Nn9qnR+SP73Oj8iX1ydP7A3qEns5Wq1mxTWioFI1idRMs8iu2NrqW95GJrdFGK8r1/h67ssWf3h0JA15WyPG4LbqstD09E5NjlFytLpnxERNo0LhUDRl1j68FPRW9roZZz128VdjzWMO1SnqmhRxe7Isa/9gvaoq4VO4o8Rt7Q036psa3qhF1bqsIeDugmqtkpGkW3nMpq+gN6LR+1TkPKJhztZii6s3nQxwUeMwW0bSTOYt0C2aHbWgZ6tg09r5lN4z1Hr0VnKzGR2JrRpdK28NwMLU2fK+3QIZbimyIounQpOrP7M3R1aB3QeBf5lmaGgWJ2y7ahl97QZvYenWqGoV2Yisx47/4mdKBs9vynovvisJvZe/SaYTjnmz164jjcibkLPZOJ6Su6NuSMEp84TGtdNHTPEYe7SHehZ4uLwxf0avTO7P6InoNyh57Jxztgt7RLM4pnI0YUdFSjb2Y/C1OFrOi+zoC2dJz+lya1qfOoBKbrjb6Z/TTD1OZoQd86pWPsd2wNROH0JJ6bMmnsdoUNFZOWF7kl25TjKQ8j5f+FGBuvp4Ft5QdvyMBzt8HgwZuP+NwtX3juRjs8+PEGeO5DJfDgR3ngwQ9QwYMfW4MHPyz46Ec0l5aWlpaWlpaWlpaWlpaW4EL/AIDBesTtBZMkAAAAAElFTkSuQmCC"></li>
+                        <li><img src="assets/15-DzRccdTg.png"></li>
+                        <li><img src="assets/16-Dn_-QgpL.png"></li>
+                        <li><img src="assets/17-CLffHcpW.png"></li>
                     </ul>
-                    
+
                     <div class="copyright1">
                         <p style="font-family:'ArialMT', 'Arial', sans-serif;"></p>
                         <p style="font-family:'PingFangSC-Regular', 'PingFang SC', sans-serif;"></p>
                     </div>
-                    
+
                     <ul class="logos">
-                        <li><img src="<?= asset('DM_20241002111212_029-CsXy4IfW.png') ?>"></li>
+                        <li><img src="assets/DM_20241002111212_029-CsXy4IfW.png"></li>
                     </ul>
-                    
+
                     <ul class="links">
                         <li><a href="#">关于我们</a></li>
                         <li><a href="#">帮助中心</a></li>
@@ -317,7 +316,7 @@ ob_start();
                         <li><a href="#">搜索推荐</a></li>
                         <li><a href="#">友情链接</a></li>
                     </ul>
-                    
+
                     <div class="copyright2">
                         <p>版权所有 ©2010-2023 保留所有权</p>
                     </div>
@@ -325,7 +324,7 @@ ob_start();
             </div>
         </div>
     </div>
-    
+
     <!-- Registration Modal -->
     <div id="registerModal" class="modal" style="display: none;">
         <div class="modal-backdrop"></div>

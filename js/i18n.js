@@ -1,22 +1,11 @@
-(function(){
-  function base(){ return "https://pc.dfbiu.com" + (location.pathname.indexOf('/dev/')===0?'/dev/':'/'); }
-  function api(p){ return base() + p.replace(/^\//,''); }
-  var lang = (localStorage.getItem('lang') || document.documentElement.getAttribute('lang') || 'en').toLowerCase();
-  fetch(api('api/i18n.php?lang='+encodeURIComponent(lang)), {credentials:'include'})
-    .then(function(r){ return r.json(); })
-    .then(function(dict){
-      Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function(node){
-        var k = node.getAttribute('data-i18n'); if (dict[k]) node.textContent = dict[k];
-      });
-    }).catch(function(e){ console.warn('i18n load failed', e); });
-})();
+
 /**
  * Internationalization support
  */
 (function() {
     'use strict';
     
-    const translations = {
+    var translations = {
         'zh-CN': {
             'login': '登录',
             'register': '注册',
@@ -50,40 +39,49 @@
             'transfer': 'Transfer',
             'games': 'Games',
             'live': 'Live',
-            'slot': 'Slot',
+            'slot': 'Slots',
             'lottery': 'Lottery',
             'sport': 'Sports',
             'profile': 'Profile',
             'vip': 'VIP',
-            'promotion': 'Promotion',
+            'promotion': 'Promotions',
             'download': 'Download',
             'contact': 'Contact Us'
         }
     };
     
-    let currentLanguage = 'zh-CN';
+    var currentLang = (localStorage.getItem('lang') || document.documentElement.getAttribute('lang') || 'zh-CN').toLowerCase();
     
-    window.i18n = {
-        t: function(key) {
-            return translations[currentLanguage][key] || key;
-        },
-        
-        setLanguage: function(lang) {
-            if (translations[lang]) {
-                currentLanguage = lang;
-                localStorage.setItem('language', lang);
+    function translate(key) {
+        return translations[currentLang] && translations[currentLang][key] || key;
+    }
+    
+    function applyTranslations() {
+        var elements = document.querySelectorAll('[data-i18n]');
+        Array.prototype.forEach.call(elements, function(element) {
+            var key = element.getAttribute('data-i18n');
+            if (key && translations[currentLang] && translations[currentLang][key]) {
+                element.textContent = translations[currentLang][key];
             }
-        },
-        
-        getCurrentLanguage: function() {
-            return currentLanguage;
+        });
+    }
+    
+    // Apply translations when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyTranslations);
+    } else {
+        applyTranslations();
+    }
+    
+    // Export functions
+    window.i18n = {
+        translate: translate,
+        applyTranslations: applyTranslations,
+        setLanguage: function(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            applyTranslations();
         }
     };
-    
-    // Initialize language from localStorage
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && translations[savedLanguage]) {
-        currentLanguage = savedLanguage;
-    }
     
 })();
